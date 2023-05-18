@@ -18,6 +18,14 @@ public:
     void withdraw();
     void all_details();
 
+    int set_balance(int x){
+        balance=balance+x;
+    }
+
+    int get_balance(){
+        return balance;
+    }
+
 };
 /**Class loan declared and single inheritance with account class**/
 class loan:public account{
@@ -192,7 +200,7 @@ start:
         cout<<endl<<endl;
         cout<<"\t\t\t\t\t\tSorry password is incorrect..."<<endl;
         cout<<"\t\t\t\t\t\tPlease try again..."<<endl<<endl;
-        cout<<"\t\t\t\t\t Press 0 to go to the login page...."<<endl;
+        cout<<"\t\t\t\t\t\tPress 0 to go to the login page...."<<endl;
         cin>>num;
         if(num==0)
         {
@@ -213,7 +221,7 @@ void account::all_details()
 
                 cout<<"\t\t\t\t\t        Your account no: "<<ac_no<<endl<<endl;
                 cout<<"\t\t\t\t\t        Name: "<<name<<endl<<endl;
-                cout<<"\t\t\t\t\t        Total Balance: "<<balance<<endl<<endl;
+                cout<<"\t\t\t\t\t        Total Balance: "<<get_balance()<<endl<<endl;
 }
 /*********************
 Outline function Deposit
@@ -228,10 +236,10 @@ void account::deposit()
             cout<<"\t\t\t\t\tEnter your deposit amount: ";
             cin>>dep;
 
-            balance=dep+balance;
+            set_balance(dep);
             cout<<endl;
             cout<<"\t\t\t\t\tTransction: "<<count<<endl<<endl;
-            cout<<"\t\t\t\t\tNow your total balance: "<<balance<<endl<<endl;
+            cout<<"\t\t\t\t\tNow your total balance: "<<get_balance()<<endl<<endl;
             cout<<"\n\n";
             cout<<"\t\t\t\tPress (y/n) y for more deposit and n for exit...."<<endl;
             cout<<"\t\t\t\t\t";
@@ -261,7 +269,7 @@ void account::withdraw()
             if(balance>=w){
                 balance=balance-w;
                 cout<<"\t\t\t\t\t   Transction: "<<count<<endl<<endl;
-                cout<<"\t\t\t\t\t   Now your total balance: "<<balance<<endl;
+                cout<<"\t\t\t\t\t   Now your total balance: "<<get_balance()<<endl;
                 cout<<"\t\t\t\t\t   Press (y/n) y for more deposit and n for exit...."<<endl;
                 cout<<"\t\t\t\t\t   ";
                 cin>>n;
@@ -295,6 +303,7 @@ void loan::loan_allow(){
                 cout<<"\t\t\t\t\t   ";
                 cin>>n;
                 if(n=="y"){
+                    set_balance(interest);
                     system("CLS");
                     cout<<"\n\t\t\t\t\t|            Your Account         |\n\n";
                     cout<<"\t\t\t\t\t===================================\n\n";
